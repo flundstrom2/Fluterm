@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Basic Express 2010
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Fluterm", "Fluterm\Fluterm.vbproj", "{DB9F707E-928E-43D3-867B-4968AAFAC095}"
 EndProject
 Global
