@@ -77,11 +77,11 @@
 
     Private Sub OnSelectionChanged_ComPort(ByVal sender As System.Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs) Handles ComboBox_ComPort.SelectionChanged
         Debug.Print("OnSelectionChanged_ComPort")
-        Debug.Print(e.Source().ToString()) 'System.Windows.Controls.ComboBox Items.Count:2
-        Debug.Print(e.AddedItems().Item(0).ToString()) 'Item(0) ska det alltid vara. Output är "System.Windows.Controls.ComboBoxItem: Rad 2" eller liknande beroende på val
-        Dim comboboxItem As ComboBoxItem
-        comboboxItem = CType(e.AddedItems().Item(0), ComboBoxItem)
-        Debug.Print(comboboxItem.Content) 'Output är "Rad 2" beroende på val.
+        Debug.Print(e.Source().ToString()) 'Output är "System.Windows.Controls.ComboBox Items.Count:13"
+        Debug.Print(e.AddedItems().Item(0).ToString()) 'Item(0) ska det alltid vara. Item(0) är String. Output är "COM3" eller liknande beroende på val
+        Dim combobox As System.Windows.Controls.ComboBox
+        combobox = CType(e.Source, System.Windows.Controls.ComboBox)
+        Debug.Print(combobox.Items.Count) '13
 
         Debug.Print("OnSelectionChanged_ComPort finished")
     End Sub
