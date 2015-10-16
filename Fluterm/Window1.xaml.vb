@@ -1,5 +1,4 @@
-﻿Class Window1 
-
+﻿Class Window1
     Private Sub OnClosed(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Closed
         Debug.Print("OnClosed")
     End Sub
@@ -23,6 +22,18 @@
     Private Sub OnInitialized(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Initialized
         Debug.Print("OnInitialized")
         ComboBox_ComPort.Items().Add("OnInitialized") ' Adderas efter att ComboBoxed populerats.
+
+        'ProgressBar1.Visible = True
+        ' Set Minimum to 1 to represent the first file being copied.
+        ProgressBar1.Minimum = 1
+        ' Set Maximum to the total number of files to copy.
+        ProgressBar1.Maximum = 100
+        ' Set the initial value of the ProgressBar.
+        ProgressBar1.Value = 25
+        ' Set the Step property to a value of 1 to represent each file being copied.
+        ' ProgressBar1.Step = 1
+
+
         GetSerialPortNames()
     End Sub
 
