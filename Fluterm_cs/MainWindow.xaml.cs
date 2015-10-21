@@ -24,5 +24,33 @@ namespace Fluterm_cs
         {
             InitializeComponent();
         }
+
+        private void OnOpenCmd(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("OnOpenCmd");
+        }
+
+        private void OnPrintCmd(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("OnPrintCmd");
+        }
+
+        private void OnExitCmd(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("OnExitCmd(RoutedEventArgs)");
+            MainWindow1.Close();            
+        }
+
+        private void OnWindowClosingCmd(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //  To prevent a window from closing, you can set the Cancel property of the CancelEventArgs argument to true.
+            Console.WriteLine("OnWindowClosingCmd");
+        }
+
+        private void OnWindowClosedCmd(object sender, EventArgs e)
+        {
+            Console.WriteLine("OnWindowClosedCmd");
+        }
+
     }
 }

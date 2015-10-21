@@ -13,5 +13,14 @@ namespace Fluterm_cs
     /// </summary>
     public partial class App : Application
     {
+        private void ApplicationStartupCmd(object sender, StartupEventArgs e)
+        {
+            Console.WriteLine("ApplicationStartupCmd");
+        }
+
+        private void ApplicationExitCmd(object sender, ExitEventArgs e)
+        {
+            Console.WriteLine("ApplicationExitCmd");
+        }
     }
 }

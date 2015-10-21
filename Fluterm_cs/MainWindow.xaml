@@ -1,26 +1,59 @@
-﻿<Window x:Class="Fluterm_cs.MainWindow"
+﻿<Window x:Name="MainWindow1" x:Class="Fluterm_cs.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="600" Width="800">
-    <Grid>
-        <Menu HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top">
-            <MenuItem Header="File">
-                <MenuItem Header="Print"/>
-                <MenuItem Header="Exit..."/>
+        Title="MainWindow" Height="600" Width="800" Closing="OnWindowClosingCmd" Closed="OnWindowClosedCmd">
+    
+    <Window.Resources>
+        <RoutedUICommand x:Key="PrintCmd" Text="">
+            <RoutedUICommand.InputGestures>
+                <KeyGesture>CTRL+P</KeyGesture>
+            </RoutedUICommand.InputGestures>
+        </RoutedUICommand>
+        <RoutedUICommand x:Key="OpenCmd" Text="">
+            <RoutedUICommand.InputGestures>
+                <KeyGesture>CTRL+O</KeyGesture>
+            </RoutedUICommand.InputGestures>
+        </RoutedUICommand>
+        <RoutedUICommand x:Key="ExitCmd" Text="">
+            <RoutedUICommand.InputGestures>
+                <KeyGesture>CTRL+ALT+F4</KeyGesture>
+            </RoutedUICommand.InputGestures>
+        </RoutedUICommand>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource OpenCmd}" Executed="OnOpenCmd"/>
+        <CommandBinding Command="{StaticResource PrintCmd}" Executed="OnPrintCmd"/>
+        <CommandBinding Command="{StaticResource ExitCmd}" Executed="OnExitCmd"/>
+    </Window.CommandBindings>
+
+   
+
+
+
+
+    <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        <Menu HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Background="{x:Null}">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open" Click="OnOpenCmd" InputGestureText="Ctrl+O"/>
+                <MenuItem Header="_Print" Click="OnPrintCmd" InputGestureText="Ctrl+P"/>
+                <MenuItem Header="_Exit..." Click="OnExitCmd"  InputGestureText="Ctrl+Alt+F4"/>
             </MenuItem>
-            <MenuItem Header="Edit"/>
-            <MenuItem Header="Window"/>
-            <MenuItem Header="Help"/>
+            <MenuItem Header="_Edit">
+            </MenuItem>
+            <MenuItem Header="_Window"/>
+            <MenuItem Header="_Help"/>
         </Menu>
+        
         <Grid HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Height="503" Width="772">
 
-            <RichTextBox HorizontalAlignment="Left" MinHeight="480" VerticalAlignment="Top" MinWidth="640" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <RichTextBox HorizontalAlignment="Left" MinHeight="480" VerticalAlignment="Top" MinWidth="640" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Height="412">
                 <FlowDocument>
                     <Paragraph>
                         <Run Text="RichTextBox"/>
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
+            
         </Grid>
         <Grid HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="29" Width="772">
             <StatusBar HorizontalAlignment="Left" MinHeight="20" VerticalAlignment="Center" MinWidth="240">
