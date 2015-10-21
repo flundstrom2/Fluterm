@@ -55,11 +55,11 @@
             </RichTextBox>
             
         </Grid>
-        <Grid HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="29" Width="772">
+        <Grid HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="29" Width="772" Initialized="OnInitialized">
             <StatusBar HorizontalAlignment="Left" MinHeight="20" VerticalAlignment="Center" MinWidth="240">
                 <StatusBarItem Content="My StatusBarItem"/>
             </StatusBar>
-            <ProgressBar HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center" Width="90" MinHeight="20" Minimum="0" Maximum="100" Value="25"/>
+            <ProgressBar x:Name="ProgressBar1" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center" Width="90" MinHeight="20" Minimum="0" Maximum="100" Value="75"/>
         </Grid>
     </Grid>
 </Window>
