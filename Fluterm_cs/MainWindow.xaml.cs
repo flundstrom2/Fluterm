@@ -82,6 +82,8 @@ namespace Fluterm_cs
             Console.WriteLine("GetUSB finished");
 
             /*
+             * SNOWDOG:
+             * 
 GetUSB (Win32_USBHub):
 Device ID: USB\VID_2109&PID_0812\7&9AC155&0&3, PNP Device ID: USB\VID_2109&PID_0812\7&9AC155&0&3, Description: Generiskt SuperSpeed USB-nav
 Device ID: USB\ROOT_HUB30\4&37AF89EA&0&0, PNP Device ID: USB\ROOT_HUB30\4&37AF89EA&0&0, Description: USB-rotnav (xHCI)
@@ -144,6 +146,44 @@ Device ID: BTHENUM\{8855C1D2-9BFE-4B96-BCBF-CBB9682C76BD}_LOCALMFG&0000\8&1BCA79
 GetUSB finished
 
 */
+
+
+
+            /*
+             * MAL266:
+             * 
+OnInitialized
+The following serial ports were found:
+COM3
+COM1
+COM10
+COM11
+COM4
+COM5
+COM7
+COM8
+COM6
+GetUSB Devices:
+Device ID: USB\VID_05CA&PID_1814\6&2DA13301&0&4, PNP Device ID: USB\VID_05CA&PID_1814\6&2DA13301&0&4, Description: USB-enhet (sammansatt), Caption: USB-enhet (sammansatt), SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: USB-enhet (sammansatt), ErrorDescription: , ClassCode: , SubclassCode: 
+Device ID: USB\VID_8087&PID_0020\5&1302ECA6&0&1, PNP Device ID: USB\VID_8087&PID_0020\5&1302ECA6&0&1, Description: Generic USB Hub, Caption: Generic USB Hub, SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: Generic USB Hub, ErrorDescription: , ClassCode: , SubclassCode: 
+Device ID: USB\VID_8087&PID_0020\5&1BEB185B&0&1, PNP Device ID: USB\VID_8087&PID_0020\5&1BEB185B&0&1, Description: Generic USB Hub, Caption: Generic USB Hub, SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: Generic USB Hub, ErrorDescription: , ClassCode: , SubclassCode: 
+Device ID: USB\VID_152D&PID_2329\70C012901422, PNP Device ID: USB\VID_152D&PID_2329\70C012901422, Description: USB-masslagringsenhet, Caption: USB-masslagringsenhet, SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: USB-masslagringsenhet, ErrorDescription: , ClassCode: , SubclassCode: 
+Device ID: USB\ROOT_HUB20\4&21999A3E&0, PNP Device ID: USB\ROOT_HUB20\4&21999A3E&0, Description: USB-rotnav (hub), Caption: USB-rotnav (hub), SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: USB-rotnav (hub), ErrorDescription: , ClassCode: , SubclassCode: 
+Device ID: USB\ROOT_HUB20\4&8798BDB&0, PNP Device ID: USB\ROOT_HUB20\4&8798BDB&0, Description: USB-rotnav (hub), Caption: USB-rotnav (hub), SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: USB-rotnav (hub), ErrorDescription: , ClassCode: , SubclassCode: 
+Device ID: USB\VID_413C&PID_2513\6&2DA13301&0&1, PNP Device ID: USB\VID_413C&PID_2513\6&2DA13301&0&1, Description: Generic USB Hub, Caption: Generic USB Hub, SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: Generic USB Hub, ErrorDescription: , ClassCode: , SubclassCode: 
+Device ID: USB\VID_18A5&PID_0245\0710549276A21D61, PNP Device ID: USB\VID_18A5&PID_0245\0710549276A21D61, Description: USB-masslagringsenhet, Caption: USB-masslagringsenhet, SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: USB-masslagringsenhet, ErrorDescription: , ClassCode: , SubclassCode: 
+Device ID: USB\VID_0A5C&PID_5800\0123456789ABCD, PNP Device ID: USB\VID_0A5C&PID_5800\0123456789ABCD, Description: USB-enhet (sammansatt), Caption: USB-enhet (sammansatt), SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: USB-enhet (sammansatt), ErrorDescription: , ClassCode: , SubclassCode: 
+Device ID: USB\VID_413C&PID_2513\6&2DA13301&0&2, PNP Device ID: USB\VID_413C&PID_2513\6&2DA13301&0&2, Description: Generic USB Hub, Caption: Generic USB Hub, SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: Generic USB Hub, ErrorDescription: , ClassCode: , SubclassCode: 
+Device ID: USB\VID_413C&PID_8184\3563970326011480, PNP Device ID: USB\VID_413C&PID_8184\3563970326011480, Description: Dell Wireless 5540 HSPA Mini-Card Device, Caption: Dell Wireless 5540 HSPA Mini-Card Device, SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: Dell Wireless 5540 HSPA Mini-Card Device, ErrorDescription: , ClassCode: , SubclassCode: 
+Device ID: USB\VID_046D&PID_C52B\7&3A336C7A&0&1, PNP Device ID: USB\VID_046D&PID_C52B\7&3A336C7A&0&1, Description: USB-enhet (sammansatt), Caption: USB-enhet (sammansatt), SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: USB-enhet (sammansatt), ErrorDescription: , ClassCode: , SubclassCode: 
+Device ID: USB\VID_413C&PID_8184&MI_06\3563970326011480_06, PNP Device ID: USB\VID_413C&PID_8184&MI_06\3563970326011480_06, Description: Dell Wireless 5540 HSPA Mini-Card Network Adapter, Caption: Dell Wireless 5540 HSPA Mini-Card Network Adapter, SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBHub, Status: OK, Name: Dell Wireless 5540 HSPA Mini-Card Network Adapter, ErrorDescription: , ClassCode: , SubclassCode: 
+GetUSB Devices finished
+GetUSB Controllers:
+Device ID: PCI\VEN_8086&DEV_3B34&SUBSYS_040A1028&REV_05\3&11583659&0&E8, PNP Device ID: PCI\VEN_8086&DEV_3B34&SUBSYS_040A1028&REV_05\3&11583659&0&E8, Description: Intel(R) 5 Series/3400 Series Chipset Family USB Enhanced Host Controller - 3B34, Caption: Intel(R) 5 Series/3400 Series Chipset Family USB Enhanced Host Controller - 3B34, SystemName: 'Fluterm_cs.vshost.exe' (CLR v4.0.30319: Fluterm_cs.vshost.exe): MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBController, Status: OK, Name: Intel(R) 5 Series/3400 Series Chipset Family USB Enhanced Host Controller - 3B34, ErrorDescription: , Manufacturer: Intel
+Device ID: PCI\VEN_8086&DEV_3B3C&SUBSYS_040A1028&REV_05\3&11583659&0&D0, PNP Device ID: PCI\VEN_8086&DEV_3B3C&SUBSYS_040A1028&REV_05\3&11583659&0&D0, Description: Intel(R) 5 Series/3400 Series Chipset Family USB Enhanced Host Controller - 3B3C, Caption: Intel(R) 5 Series/3400 Series Chipset Family USB Enhanced Host Controller - 3B3C, SystemName: MAL266, SystemCreationClassName: Win32_ComputerSystem, CreationClassName: Win32_USBController, Status: OK, Name: Intel(R) 5 Series/3400 Series Chipset Family USB Enhanced Host Controller - 3B3C, ErrorDescription: , Manufacturer: Intel
+GetUSB finished
+
+             */
 
         }
 
@@ -278,7 +318,7 @@ class Win32_PnPEntity : CIM_LogicalDevice
 };          
            
            */
-          using (var searcher = new ManagementObjectSearcher(@"Select * From Win32_USBHub"))
+            using (var searcher = new ManagementObjectSearcher(@"Select * From Win32_USBHub"))
               collection = searcher.Get();
 
           foreach (var device in collection)
