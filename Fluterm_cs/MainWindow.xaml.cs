@@ -406,11 +406,11 @@ class Win32_PnPEntity : CIM_LogicalDevice
 
             // 'ProgressBar1.Visible = True;
             // ' Set Minimum to 1 to represent the first file being copied.
-            ProgressBar1.Minimum = 1;
+            //ProgressBar1.Minimum = 1;
             // ' Set Maximum to the total number of files to copy.
-            ProgressBar1.Maximum = 100;
+            //ProgressBar1.Maximum = 100;
             // ' Set the initial value of the ProgressBar.
-            ProgressBar1.Value = 25;
+            //ProgressBar1.Value = 25;
             // ' Set the Step property to a value of 1 to represent each file being copied.
             // ' ProgressBar1.Step = 1;
 
@@ -446,6 +446,48 @@ class Win32_PnPEntity : CIM_LogicalDevice
         private void OnWindowClosedCmd(object sender, EventArgs e)
         {
             Console.WriteLine("OnWindowClosedCmd");
+        }
+
+        private void MainWindow_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            string s;
+
+            double winDeltaW = e.NewSize.Width - e.PreviousSize.Width;
+            double winDeltaH = e.NewSize.Height - e.PreviousSize.Height;
+
+            s = "Window OnSizeChanged: ";
+            s += e.PreviousSize;
+            s += " -> ";
+            s += e.NewSize;
+            s += " (" + winDeltaW + "," + winDeltaH + ")";
+
+            s += " RichTextBox_LogArea.MinHeight: " + RichTextBox_LogArea.MinHeight + " RichTextBox_LogArea.Height: ";
+            if (RichTextBox_LogArea.MinHeight <= RichTextBox_LogArea.Height + winDeltaH)
+            {
+                RichTextBox_LogArea.Height += winDeltaH;
+            }
+
+            s += "\r";
+            //RichTextBox_LogArea.AppendText(s);
+            Console.Write(s);
+        }
+
+        private void RichTextBox_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            string s;
+
+            double rtbDeltaW = e.NewSize.Width - e.PreviousSize.Width;
+            double rtbDeltaH = e.NewSize.Height - e.PreviousSize.Height;
+
+            s = "RichTextBox OnSizeChanged: ";
+            s += e.PreviousSize;
+            s += " -> ";
+            s += e.NewSize;
+            s += " (" + rtbDeltaW + "," + rtbDeltaH + ")";
+            s += "\r";
+
+            //RichTextBox_LogArea.AppendText(s);
+            Console.Write(s);
         }
 
     }
