@@ -18,6 +18,32 @@ using System.Management; // need to add System.Management to your project refere
 
 namespace Fluterm_cs
 {
+
+	enum ft_hex_encoding_e
+    {
+        FT_HEX_ENCODING_NONE,
+        FT_HEX_ENCODING_0x,
+        FT_HEX_ENCODING_BACKSLASH
+    };
+
+    public class Fluterm
+    {
+        private ft_hex_encoding_e m_hex_encoding = ft_hex_encoding_e.FT_HEX_ENCODING_NONE;
+
+        public Fluterm()
+        {
+         //   m_hex_encoding = FT_HEX_ENCODING_NONE;
+        }
+
+        void SetHexEncoding (ft_hex_encoding_e encoding) {
+            m_hex_encoding = encoding;
+        }
+
+        ft_hex_encoding_e GetHexEncoding() {
+            return m_hex_encoding;
+        }
+    };
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
