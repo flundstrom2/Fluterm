@@ -119,18 +119,17 @@ namespace Fluterm_cs
             s += e.NewSize;
             s += " (" + winDeltaW + "," + winDeltaH + ")";
 
-            s += " RichTextBox_LogArea.MinHeight: " + RichTextBox_LogArea.MinHeight + " RichTextBox_LogArea.Height: ";
-            if (RichTextBox_LogArea.MinHeight <= RichTextBox_LogArea.Height + winDeltaH)
+            s += " LogArea.MinHeight: " + LogArea.MinHeight + " LogArea.Height: ";
+            if (LogArea.MinHeight <= LogArea.Height + winDeltaH)
             {
-                RichTextBox_LogArea.Height += winDeltaH;
+                LogArea.Height += winDeltaH;
             }
 
             s += "\r";
-            //RichTextBox_LogArea.AppendText(s);
             Console.Write(s);
         }
 
-        private void RichTextBox_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void LogArea_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             string s;
 
@@ -144,9 +143,7 @@ namespace Fluterm_cs
             s += " (" + rtbDeltaW + "," + rtbDeltaH + ")";
             s += "\r";
 
-            //RichTextBox_LogArea.AppendText(s);
             Console.Write(s);
         }
-
     }
 }

@@ -47,7 +47,7 @@
 
 
         <StackPanel ScrollViewer.VerticalScrollBarVisibility="Disabled" Height="Auto">
-            <RichTextBox x:Name="RichTextBox_LogArea" MinHeight="100" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" Margin="10,10,10,10" SizeChanged="RichTextBox_SizeChanged" MaxHeight="600" MinWidth="640">
+            <RichTextBox x:Name="LogArea" MinHeight="100" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" Margin="10,10,10,10" SizeChanged="LogArea_SizeChanged" MaxHeight="600" MinWidth="640">
                 <FlowDocument >
                     <Paragraph>
                         <Run Text="RichTextBox"/>
