@@ -73,9 +73,9 @@ namespace Fluterm_cs
             // ' ProgressBar1.Step = 1;
 
 
-            mComUtil.GetSerialPortNames();
+            //mComUtil.GetSerialPortNames();
 
-            mUsbUtil.GetUSB();
+            //mUsbUtil.GetUSB();
 
         }
 
