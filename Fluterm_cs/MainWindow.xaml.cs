@@ -119,17 +119,19 @@ namespace Fluterm_cs
             s += e.NewSize;
             s += " (" + winDeltaW + "," + winDeltaH + ")";
 
-            s += " LogArea.MinHeight: " + LogArea.MinHeight + " LogArea.Height: ";
-            if (LogArea.MinHeight <= LogArea.Height + winDeltaH)
-            {
-                LogArea.Height += winDeltaH;
-            }
+            /*
+                s += " LogArea2.MinHeight: " + LogArea2.MinHeight + " LogArea2.Height: ";
+                if (LogArea2.MinHeight <= LogArea2.Height + winDeltaH)
+                {
+                    LogArea2.Height += winDeltaH;
+                }
+            */
 
             s += "\r";
             Console.Write(s);
         }
 
-        private void LogArea_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void LogArea2_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             string s;
 
@@ -144,6 +146,48 @@ namespace Fluterm_cs
             s += "\r";
 
             Console.Write(s);
+        }
+
+        private void TextInput_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+            Console.WriteLine("TextInput_TargetUpdated");
+        }
+
+        private void TextInput_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            Console.WriteLine("TextInput_SourceUpdated");
+        }
+
+        private void TextInput_TextInput(object sender, TextCompositionEventArgs e)
+        {
+            Console.WriteLine("TextInput_TextInput");
+        }
+
+        private void TextInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // For each character
+            Console.WriteLine("TextInput_TextChanged");
+        }
+
+        private void Baudrate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // When selection changed. Only occationally for manual text input (!)
+            Console.WriteLine("Baudrate_SelectionChanged");
+        }
+
+        private void Baudrate_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            Console.WriteLine("Baudrate_SourceUpdated");
+        }
+
+        private void Baudrate_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+            Console.WriteLine("Baudrate_TargetUpdated");
+        }
+
+        private void Baudrate_TextInput(object sender, TextCompositionEventArgs e)
+        {
+            Console.WriteLine("Baudrate_TextInput");
         }
     }
 }
