@@ -50,26 +50,12 @@ namespace Fluterm_cs
     public partial class MainWindow : Window
     {
         private Fluterm_cs.USBUtil mUsbUtil = new Fluterm_cs.USBUtil();
+        private Fluterm_cs.COMUtil mComUtil = new Fluterm_cs.COMUtil();
 
         public MainWindow()
         {
             InitializeComponent();
         }
-
-        private void GetSerialPortNames()
-        {
-            // Get a list of serial port names.
-            string[] ports = SerialPort.GetPortNames();
-
-            Console.WriteLine("The following serial ports were found:");
-
-            // Display each port name to the console.
-            foreach(string port in ports)
-            {
-                Console.WriteLine(port);
-            }
-        }
-
 
         private void OnInitialized(object sender, EventArgs e)
         {
@@ -87,7 +73,7 @@ namespace Fluterm_cs
             // ' ProgressBar1.Step = 1;
 
 
-            GetSerialPortNames();
+            mComUtil.GetSerialPortNames();
 
             mUsbUtil.GetUSB();
 
