@@ -119,16 +119,32 @@ namespace Fluterm_cs
             s += e.NewSize;
             s += " (" + winDeltaW + "," + winDeltaH + ")";
 
-            /*
-                s += " LogArea2.MinHeight: " + LogArea2.MinHeight + " LogArea2.Height: ";
-                if (LogArea2.MinHeight <= LogArea2.Height + winDeltaH)
+            s += LogArea2_GetSizeString();
+            if (e.PreviousSize.Width != 0 && e.PreviousSize.Height != 0)
+            {
+                if (LogArea2.MinHeight <= LogArea2.ActualHeight + winDeltaH)
                 {
-                    LogArea2.Height += winDeltaH;
+                    double newHeight = LogArea2.ActualHeight + winDeltaH;
+                    s += " (Updating height to " + newHeight + ") ";
+                    LogArea2.Height = newHeight; // This triggers LogArea2_SizeChanged
                 }
-            */
+            }
+            else
+            {
+                s += " (Initial configuration of size; ignoring it) ";
+            }
 
             s += "\r";
             Console.Write(s);
+        }
+
+        private string LogArea2_GetSizeString()
+        {
+            string s = "";
+            // Height and Width returns NaN.
+            s += "LogArea2.MinHeight: " + LogArea2.MinHeight + " LogArea2.ActualHeight: " + LogArea2.ActualHeight;
+            s += " LogArea2.MinWidth: " + LogArea2.MinWidth + " LogArea2.ActualWidth: " + LogArea2.ActualWidth;
+            return s;
         }
 
         private void LogArea2_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -138,11 +154,12 @@ namespace Fluterm_cs
             double rtbDeltaW = e.NewSize.Width - e.PreviousSize.Width;
             double rtbDeltaH = e.NewSize.Height - e.PreviousSize.Height;
 
-            s = "RichTextBox OnSizeChanged: ";
+            s = "LogArea2 OnSizeChanged: ";
             s += e.PreviousSize;
             s += " -> ";
             s += e.NewSize;
-            s += " (" + rtbDeltaW + "," + rtbDeltaH + ")";
+            s += " (" + rtbDeltaW + "," + rtbDeltaH + ") ";
+            s += LogArea2_GetSizeString();
             s += "\r";
 
             Console.Write(s);

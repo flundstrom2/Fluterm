@@ -43,7 +43,7 @@
             <MenuItem Header="_Window"/>
             <MenuItem Header="_Help"/>
         </Menu>
-        <TextBox x:Name="LogArea2" Margin="6,0,6,0" TextWrapping="Wrap" Text="TextBox : LogArea attempt" MinHeight="256" MinWidth="640" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" MinLines="10" SizeChanged="LogArea2_SizeChanged"/>
+        <TextBox x:Name="LogArea2" Margin="6,0,6,0" TextWrapping="Wrap" Text="TextBox : LogArea2 attempt" MinHeight="256" MinWidth="640" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" MinLines="10" SizeChanged="LogArea2_SizeChanged"/>
         <StackPanel Margin="6,6,6,6">
             <TextBox x:Name="TextInput" Height="23" TextWrapping="Wrap" Text="TextBox" Margin="0,0,0,6" TargetUpdated="TextInput_TargetUpdated" SourceUpdated="TextInput_SourceUpdated" TextInput="TextInput_TextInput" TextChanged="TextInput_TextChanged"/>
             <TabControl MinHeight="140">
@@ -178,7 +178,7 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>-->
-        <!--<TextBox x:Name="LogArea2" TextWrapping="Wrap" Text="TextBox : LogArea attempt" MinHeight="46" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" MinLines="10" Height="100" MinWidth="100" SizeChanged="LogArea2_SizeChanged" VerticalAlignment="Top"/>-->
+        <!--<TextBox x:Name="LogArea2" TextWrapping="Wrap" Text="TextBox : LogArea2 attempt" MinHeight="46" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" MinLines="10" Height="100" MinWidth="100" SizeChanged="LogArea2_SizeChanged" VerticalAlignment="Top"/>-->
         <!--<TextBox x:Name="LogArea2" HorizontalAlignment="Stretch" Height="23" Margin="10,0,10,10" TextWrapping="NoWrap" Text="TextBox" VerticalAlignment="Bottom" SizeChanged="LogArea2_SizeChanged"/>-->
 
         <!--
