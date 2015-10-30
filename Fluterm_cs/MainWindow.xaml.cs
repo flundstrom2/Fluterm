@@ -122,10 +122,22 @@ namespace Fluterm_cs
             s += LogArea_GetSizeString();
             if (e.PreviousSize.Width != 0 && e.PreviousSize.Height != 0)
             {
-                if (LogArea.MinHeight <= LogArea.ActualHeight + winDeltaH)
+                if (LogArea.MinHeight > LogArea.ActualHeight + winDeltaH)
+                {
+                    double requestedHeight = LogArea.ActualHeight + winDeltaH;
+                    double winDeltaHOld = winDeltaH;
+                    double winDeltaHNew = winDeltaHOld + LogArea.MinHeight - requestedHeight;
+                    winDeltaH = winDeltaHNew;
+                    double winNewHeight = e.PreviousSize.Height + winDeltaHNew;
+                    Height = winNewHeight;
+                    s += " (Delta " + winDeltaHOld + " would be less than LogArea's minHeight, adjusting delta to " + winDeltaHNew + " and adjusting size of window to " + Height + ")";
+                    LogArea.Height = LogArea.MinHeight;
+                    s += " (Updating LogArea height to " + LogArea.Height + ") ";
+                }
+                else
                 {
                     double newHeight = LogArea.ActualHeight + winDeltaH;
-                    s += " (Updating height to " + newHeight + ") ";
+                    s += " (Updating LogArea height to " + newHeight + ") ";
                     LogArea.Height = newHeight; // This triggers LogArea_SizeChanged
                 }
             }
@@ -135,7 +147,7 @@ namespace Fluterm_cs
             }
 
             s += "\r";
-            Console.Write(s);
+            //Console.Write(s);
         }
 
         private string LogArea_GetSizeString()
@@ -160,9 +172,19 @@ namespace Fluterm_cs
             s += e.NewSize;
             s += " (" + rtbDeltaW + "," + rtbDeltaH + ") ";
             s += LogArea_GetSizeString();
+
+            if (e.PreviousSize.Width == 0 && e.PreviousSize.Height == 0)
+            {
+                double winNewHeight = (ActualHeight - e.NewSize.Height) + LogArea.MinHeight;
+                double winNewWidth = (ActualWidth - e.NewSize.Width) + LogArea.MinWidth;
+                s += " (Initial configuration of size; setting Windows MinHeight, Minwidth to (" + winNewHeight + ", " + winNewWidth + ")) ";
+                MinHeight = winNewHeight;
+                MinWidth = winNewWidth;
+            }
+
             s += "\r";
 
-            Console.Write(s);
+            //Console.Write(s);
         }
 
         private void TextInput_TargetUpdated(object sender, DataTransferEventArgs e)

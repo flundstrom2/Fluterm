@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Name="MainWindow1" x:Class="Fluterm_cs.MainWindow"
-        Title="MainWindow" Closing="OnWindowClosingCmd" Closed="OnWindowClosedCmd" d:DesignWidth="672" d:DesignHeight="522" SizeChanged="MainWindow_OnSizeChanged" Width="672" Height="522" MinWidth="640" MinHeight="480" >
+        Title="MainWindow" Closing="OnWindowClosingCmd" Closed="OnWindowClosedCmd" d:DesignWidth="672" d:DesignHeight="522" SizeChanged="MainWindow_OnSizeChanged" Width="672" Height="522" MinWidth="0" MinHeight="0" >
 
     <Window.Resources>
         <RoutedUICommand x:Key="PrintCmd" Text="">
@@ -43,7 +43,7 @@
             <MenuItem Header="_Window"/>
             <MenuItem Header="_Help"/>
         </Menu>
-        <TextBox x:Name="LogArea" Margin="6,0,6,0" TextWrapping="Wrap" Text="TextBox : LogArea attempt" MinHeight="256" MinWidth="640" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" MinLines="10" SizeChanged="LogArea_SizeChanged"/>
+        <TextBox x:Name="LogArea" Margin="6,0,6,0" TextWrapping="Wrap" Text="TextBox : LogArea attempt" MinHeight="256" MinWidth="120" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" MinLines="10" SizeChanged="LogArea_SizeChanged"/>
         <StackPanel Margin="6,6,6,6">
             <TextBox x:Name="TextInput" Height="23" TextWrapping="Wrap" Text="TextBox" Margin="0,0,0,6" TargetUpdated="TextInput_TargetUpdated" SourceUpdated="TextInput_SourceUpdated" TextInput="TextInput_TextInput" TextChanged="TextInput_TextChanged"/>
             <TabControl MinHeight="140">
