@@ -1,4 +1,6 @@
-﻿<Window
+﻿<!-- The Window.Height must be LogArea.Height + 266 + any additional height caused by more than 4 rows in the configuration area. -->
+    
+    <Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Name="MainWindow1" x:Class="Fluterm_cs.MainWindow"
@@ -43,9 +45,9 @@
             <MenuItem Header="_Window"/>
             <MenuItem Header="_Help"/>
         </Menu>
-        <TextBox x:Name="LogArea" Margin="6,0,6,0" TextWrapping="Wrap" Text="TextBox : LogArea attempt" MinHeight="256" MinWidth="120" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" MinLines="10" SizeChanged="LogArea_SizeChanged"/>
+        <TextBox x:Name="LogArea" Margin="6,0,6,0" Text="TextBox : LogArea attempt" Height="256" MinHeight="92" MinWidth="120" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" MinLines="10" SizeChanged="LogArea_SizeChanged" FontFamily="Lucida Console"/>
         <StackPanel Margin="6,6,6,6">
-            <TextBox x:Name="TextInput" Height="23" TextWrapping="Wrap" Text="TextBox" Margin="0,0,0,6" TargetUpdated="TextInput_TargetUpdated" SourceUpdated="TextInput_SourceUpdated" TextInput="TextInput_TextInput" TextChanged="TextInput_TextChanged"/>
+            <TextBox x:Name="TextInput" Height="23" Text="TextBox" Margin="0,0,0,6" TargetUpdated="TextInput_TargetUpdated" SourceUpdated="TextInput_SourceUpdated" TextInput="TextInput_TextInput" TextChanged="TextInput_TextChanged" FontFamily="Lucida Console"/>
             <TabControl MinHeight="140">
                 <!--
                 <TabItem Header="TabItem">
