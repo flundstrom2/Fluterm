@@ -119,14 +119,14 @@ namespace Fluterm_cs
             s += e.NewSize;
             s += " (" + winDeltaW + "," + winDeltaH + ")";
 
-            s += LogArea2_GetSizeString();
+            s += LogArea_GetSizeString();
             if (e.PreviousSize.Width != 0 && e.PreviousSize.Height != 0)
             {
-                if (LogArea2.MinHeight <= LogArea2.ActualHeight + winDeltaH)
+                if (LogArea.MinHeight <= LogArea.ActualHeight + winDeltaH)
                 {
-                    double newHeight = LogArea2.ActualHeight + winDeltaH;
+                    double newHeight = LogArea.ActualHeight + winDeltaH;
                     s += " (Updating height to " + newHeight + ") ";
-                    LogArea2.Height = newHeight; // This triggers LogArea2_SizeChanged
+                    LogArea.Height = newHeight; // This triggers LogArea_SizeChanged
                 }
             }
             else
@@ -138,28 +138,28 @@ namespace Fluterm_cs
             Console.Write(s);
         }
 
-        private string LogArea2_GetSizeString()
+        private string LogArea_GetSizeString()
         {
             string s = "";
             // Height and Width returns NaN.
-            s += "LogArea2.MinHeight: " + LogArea2.MinHeight + " LogArea2.ActualHeight: " + LogArea2.ActualHeight;
-            s += " LogArea2.MinWidth: " + LogArea2.MinWidth + " LogArea2.ActualWidth: " + LogArea2.ActualWidth;
+            s += "LogArea.MinHeight: " + LogArea.MinHeight + " LogArea.ActualHeight: " + LogArea.ActualHeight;
+            s += " LogArea.MinWidth: " + LogArea.MinWidth + " LogArea.ActualWidth: " + LogArea.ActualWidth;
             return s;
         }
 
-        private void LogArea2_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void LogArea_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             string s;
 
             double rtbDeltaW = e.NewSize.Width - e.PreviousSize.Width;
             double rtbDeltaH = e.NewSize.Height - e.PreviousSize.Height;
 
-            s = "LogArea2 OnSizeChanged: ";
+            s = "LogArea OnSizeChanged: ";
             s += e.PreviousSize;
             s += " -> ";
             s += e.NewSize;
             s += " (" + rtbDeltaW + "," + rtbDeltaH + ") ";
-            s += LogArea2_GetSizeString();
+            s += LogArea_GetSizeString();
             s += "\r";
 
             Console.Write(s);
