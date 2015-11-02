@@ -60,11 +60,11 @@
                         
                         <Grid>
                             <Label Content="Port" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" MinWidth="100"/>
+                            <ComboBox x:Name="ComboBox_SerialPort" HorizontalAlignment="Right" VerticalAlignment="Top" MinWidth="100" SelectionChanged="ComboBox_SerialPort_SelectionChanged"/>
                         </Grid>
                         <Grid>
                             <Label Content="Baudrate" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" MinWidth="100" SelectedIndex="0" IsReadOnly="False" IsEditable="True" SelectedItem="5" SelectionChanged="Baudrate_SelectionChanged" SourceUpdated="Baudrate_SourceUpdated" TargetUpdated="Baudrate_TargetUpdated" TextInput="Baudrate_TextInput">
+                            <ComboBox x:Name="ComboBox_ComBaudrate" HorizontalAlignment="Right" VerticalAlignment="Top" MinWidth="100" SelectedIndex="0" IsReadOnly="False" IsEditable="True" SelectedItem="5" SelectionChanged="ComboBox_ComBaudrate_SelectionChanged">
                                 <ComboBoxItem Content="300"/>
                                 <ComboBoxItem Content="600"/>
                                 <ComboBoxItem Content="1k2"/>

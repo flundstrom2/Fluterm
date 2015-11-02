@@ -60,7 +60,6 @@ namespace Fluterm_cs
         private void OnInitialized(object sender, EventArgs e)
         {
             Debug.Print("OnInitialized");
-            // ComboBox_ComPort.Items().Add("OnInitialized"); ' Adderas efter att ComboBoxed populerats.
 
             // 'ProgressBar1.Visible = True;
             // ' Set Minimum to 1 to represent the first file being copied.
@@ -73,10 +72,39 @@ namespace Fluterm_cs
             // ' ProgressBar1.Step = 1;
 
 
-            //mComUtil.GetSerialPortNames();
+            ComboBox_SerialPort_Populate();
+            Comport_Reopen();
 
             //mUsbUtil.GetUSB();
 
+        }
+
+        private void Comport_Reopen()
+        {
+            Console.WriteLine("Comport_Reopen");
+            if (ComboBox_SerialPort.SelectedItem != null)
+            {
+                string portName = ComboBox_SerialPort.SelectedItem.ToString();
+                if (portName != "None")
+                {
+                    Console.WriteLine("Comport_Reopen reselecting");
+                    if (!mComUtil.OpenPort(portName))
+                    {
+                        ComboBox_SerialPort.SelectedIndex = ComboBox_SerialPort.Items.Count - 1;
+                    }
+                }
+            }
+        }
+
+        private void ComboBox_SerialPort_Populate()
+        {
+            List<string> sortedPortNames = mComUtil.GetSerialPortNames();
+            foreach (string sortedPortName in sortedPortNames)
+            {
+                ComboBox_SerialPort.Items.Add(sortedPortName);
+            }
+            ComboBox_SerialPort.Items.Add("None");
+            ComboBox_SerialPort.SelectedIndex = 0;
         }
 
         private void OnOpenCmd(object sender, RoutedEventArgs e)
@@ -242,25 +270,17 @@ namespace Fluterm_cs
             Console.WriteLine("TextInput_TextChanged");
         }
 
-        private void Baudrate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_ComBaudrate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // When selection changed. Only occationally for manual text input (!)
-            Console.WriteLine("Baudrate_SelectionChanged");
+            Console.WriteLine("ComboBox_ComBaudrate_SelectionChanged");
+            Comport_Reopen();
         }
 
-        private void Baudrate_SourceUpdated(object sender, DataTransferEventArgs e)
+        private void ComboBox_SerialPort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Console.WriteLine("Baudrate_SourceUpdated");
-        }
-
-        private void Baudrate_TargetUpdated(object sender, DataTransferEventArgs e)
-        {
-            Console.WriteLine("Baudrate_TargetUpdated");
-        }
-
-        private void Baudrate_TextInput(object sender, TextCompositionEventArgs e)
-        {
-            Console.WriteLine("Baudrate_TextInput");
+            Console.WriteLine("ComboBox_SerialPort_OnSelectionChanged");
+            Comport_Reopen();
         }
     }
 }
