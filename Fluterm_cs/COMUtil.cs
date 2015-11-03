@@ -7,6 +7,17 @@ using System.Threading.Tasks;
 
 namespace Fluterm_cs
 {
+    public struct DataChunk
+    {
+        public byte[] dataRead;
+        public int numBytes;
+    };
+
+    public class DataChunksReceivedEventArgs : EventArgs
+    {
+        public List<DataChunk> chunks { get; set; }
+    }
+
     public class COMUtil : IDisposable
     {
         public COMUtil()
@@ -66,12 +77,6 @@ namespace Fluterm_cs
         static int sRxBufferSize = 10;
         static byte[] sRxBuffer = new byte[sRxBufferSize];
 
-        private struct DataChunk
-        {
-            public byte[] dataRead;
-            public int numBytes;
-        };
-
         private static void DataReceivedHandler(
                         object sender,
                         SerialDataReceivedEventArgs e)
@@ -115,23 +120,40 @@ namespace Fluterm_cs
                 dataToRead = sp.BytesToRead;
             } while (dataToRead > 0);
 
-            SignalChunksRead(readChunks);
+            SignalDataChunksReceived(readChunks);
         }
 
-        private static void SignalChunksRead(List<DataChunk> readChunks)
+        public event EventHandler DataChunksReceived;
+
+       protected virtual void OnDataChunksReceived(EventArgs e)
         {
+            EventHandler handler = DataChunksReceived;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        private static void SignalDataChunksReceived(List<DataChunk> readChunks)
+        {
+            
             int chunkIdx = 1;
 
-            Console.WriteLine("Got " + readChunks.Count + " chunks:");
+            Console.WriteLine("SignalChunksRead: Got " + readChunks.Count + " chunks:");
             foreach (DataChunk dc in readChunks)
             {
                 string s = ConvertIndataToPrintable(dc.dataRead, dc.numBytes);
                 Console.WriteLine(chunkIdx + ": " + dc.numBytes + " bytes: " + s);
                 chunkIdx++;
             }
+            
+
+            DataChunksReceivedEventArgs ea = new DataChunksReceivedEventArgs();
+            ea.chunks = readChunks;
+            sMe.OnDataChunksReceived(ea);
         }
 
-        private static string ConvertIndataToPrintable(byte[] p, int dataRead)
+        public static string ConvertIndataToPrintable(byte[] p, int dataRead)
         {
             string s = System.Text.Encoding.UTF8.GetString(p, 0, dataRead);
 
@@ -139,8 +161,11 @@ namespace Fluterm_cs
 
         }
 
+        static COMUtil sMe = null;
+
         public bool OpenPort(string portName)
         {
+            COMUtil.sMe = this;
             Console.WriteLine("OpenPort: " + portName);
             ClosePort();
             mSerialPort = new SerialPort(portName);

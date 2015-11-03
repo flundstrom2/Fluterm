@@ -51,9 +51,11 @@ namespace Fluterm_cs
     {
         private Fluterm_cs.USBUtil mUsbUtil = new Fluterm_cs.USBUtil();
         private Fluterm_cs.COMUtil mComUtil = new Fluterm_cs.COMUtil();
+        static MainWindow sMe = null;
 
         public MainWindow()
         {
+            sMe = this;
             InitializeComponent();
         }
 
@@ -73,9 +75,27 @@ namespace Fluterm_cs
 
 
             ComboBox_SerialPort_Populate();
+            mComUtil.DataChunksReceived += OnDataChunksReceived;
             Comport_Reopen();
 
             //mUsbUtil.GetUSB();
+
+        }
+
+        static void OnDataChunksReceived(object sender, EventArgs e)
+        {
+            DataChunksReceivedEventArgs ea = (DataChunksReceivedEventArgs)e;
+
+            int chunkIdx = 1;
+
+            Console.WriteLine("OnDataChunksReceived: Got " + ea.chunks.Count + " chunks:");
+            foreach (DataChunk dc in ea.chunks)
+            {
+                string s = COMUtil.ConvertIndataToPrintable(dc.dataRead, dc.numBytes);
+                sMe.LogArea.AppendText(s); // TODO: Needs to be propagated to the UI thread! HOW?
+                Console.WriteLine(chunkIdx + ": " + dc.numBytes + " bytes: " + s);
+                chunkIdx++;
+            }
 
         }
 
