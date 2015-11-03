@@ -66,6 +66,11 @@ namespace Fluterm_cs
         static int sRxBufferSize = 10;
         static byte[] sRxBuffer = new byte[sRxBufferSize];
 
+        private struct DataChunk
+        {
+            public byte[] dataRead;
+            public int numBytes;
+        };
 
         private static void DataReceivedHandler(
                         object sender,
@@ -74,24 +79,23 @@ namespace Fluterm_cs
             SerialPort sp = (SerialPort)sender;
             int dataRead = 0;
             int dataToRead = sp.BytesToRead;
+            List<DataChunk> readChunks = new List<DataChunk>();
             do
             {
-                if (dataToRead == 0)
-                {
-                    dataToRead = 1; // To force end of read by timeout.
-                }
                 if (sRxBufferSize < dataToRead)
                 {
                     dataToRead = sRxBufferSize;
                 }
 
+                // dataToRead shall always be > 0 at this point.
                 try
                 {
                     dataRead = sp.Read(COMUtil.sRxBuffer, 0, dataToRead);
                 } 
                 catch (TimeoutException)
                 {
-                    Console.WriteLine("DataReceivedHandler: TimeoutException");
+                    // Exceptions are expensive in .NET - avoid at all costs!
+                    // Console.WriteLine("DataReceivedHandler: TimeoutException");
                     dataRead = 0;
                 }
                 catch (Exception x)
@@ -100,10 +104,31 @@ namespace Fluterm_cs
                     Console.WriteLine("DataReceivedHandler: Unexpected exception: " + x);
                     return;
                 }
-                string printableData = ConvertIndataToPrintable(COMUtil.sRxBuffer, dataRead);
-                Console.WriteLine("Got " + dataRead + " bytes: " + printableData);
+                if (dataRead > 0) {
+                    DataChunk dc;
+                    dc.dataRead = COMUtil.sRxBuffer;
+                    dc.numBytes = dataRead;
+                    COMUtil.sRxBuffer = new byte[sRxBufferSize];
+
+                    readChunks.Add(dc);
+                }
                 dataToRead = sp.BytesToRead;
-            } while (dataRead > 0 || dataToRead > 0);
+            } while (dataToRead > 0);
+
+            SignalChunksRead(readChunks);
+        }
+
+        private static void SignalChunksRead(List<DataChunk> readChunks)
+        {
+            int chunkIdx = 1;
+
+            Console.WriteLine("Got " + readChunks.Count + " chunks:");
+            foreach (DataChunk dc in readChunks)
+            {
+                string s = ConvertIndataToPrintable(dc.dataRead, dc.numBytes);
+                Console.WriteLine(chunkIdx + ": " + dc.numBytes + " bytes: " + s);
+                chunkIdx++;
+            }
         }
 
         private static string ConvertIndataToPrintable(byte[] p, int dataRead)
