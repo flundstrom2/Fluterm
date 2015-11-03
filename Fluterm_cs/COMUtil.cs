@@ -63,15 +63,55 @@ namespace Fluterm_cs
         }
 
         SerialPort mSerialPort = null;
+        static int sRxBufferSize = 10;
+        static byte[] sRxBuffer = new byte[sRxBufferSize];
+
 
         private static void DataReceivedHandler(
                         object sender,
                         SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
-            string indata = sp.ReadExisting();
-            Console.WriteLine("Data Received:");
-            Console.Write(indata);
+            int dataRead = 0;
+            int dataToRead = sp.BytesToRead;
+            do
+            {
+                if (dataToRead == 0)
+                {
+                    dataToRead = 1; // To force end of read by timeout.
+                }
+                if (sRxBufferSize < dataToRead)
+                {
+                    dataToRead = sRxBufferSize;
+                }
+
+                try
+                {
+                    dataRead = sp.Read(COMUtil.sRxBuffer, 0, dataToRead);
+                } 
+                catch (TimeoutException)
+                {
+                    Console.WriteLine("DataReceivedHandler: TimeoutException");
+                    dataRead = 0;
+                }
+                catch (Exception x)
+                {
+                    // None of the other documented exceptions can happen if this function is bug-free. Tested 2015-11-03.
+                    Console.WriteLine("DataReceivedHandler: Unexpected exception: " + x);
+                    return;
+                }
+                string printableData = ConvertIndataToPrintable(COMUtil.sRxBuffer, dataRead);
+                Console.WriteLine("Got " + dataRead + " bytes: " + printableData);
+                dataToRead = sp.BytesToRead;
+            } while (dataRead > 0 || dataToRead > 0);
+        }
+
+        private static string ConvertIndataToPrintable(byte[] p, int dataRead)
+        {
+            string s = System.Text.Encoding.UTF8.GetString(p, 0, dataRead);
+
+            return s;
+
         }
 
         public bool OpenPort(string portName)
@@ -79,7 +119,8 @@ namespace Fluterm_cs
             Console.WriteLine("OpenPort: " + portName);
             ClosePort();
             mSerialPort = new SerialPort(portName);
-            mSerialPort.WriteTimeout = 50; // 50ms write timeout.
+            mSerialPort.WriteTimeout = 50; // 50ms write timeout. TODO: Reasonable timeout?
+            mSerialPort.ReadTimeout = 0; // Finish immediately.
 
             try
             {
