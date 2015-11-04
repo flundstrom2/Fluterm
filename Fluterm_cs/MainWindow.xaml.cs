@@ -93,11 +93,31 @@ namespace Fluterm_cs
             {
                 string s = COMUtil.ConvertIndataToPrintable(dc.dataRead, dc.numBytes);
                 sMe.LogArea.AppendText(s); // TODO: Needs to be propagated to the UI thread! HOW?
+                /*
+                 * See http://stackoverflow.com/questions/661561/how-to-update-the-gui-from-another-thread-in-c
+                 * 
+                this.Invoke((MethodInvoker) delegate { someLabel.Text = "new text"; });
+                this.Invoke((MethodInvoker) (() => someLabel.Text = "new text"));
+                this.Invoke(new Action(() => someLabel.Text = "new text"));
+                 * 
+                 */
                 Console.WriteLine(chunkIdx + ": " + dc.numBytes + " bytes: " + s);
                 chunkIdx++;
             }
 
         }
+
+        /* Source  DTE   DCE
+         *         ---   ---
+         *         TxD
+         *               RxD
+         *         RTS   
+         *               CTS
+         *               DSR
+         *               DCD
+         *         DTR
+         *               RI
+         */
 
         private void Comport_Reopen()
         {
